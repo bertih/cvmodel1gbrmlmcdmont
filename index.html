@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo Profissional - Gabriel M. Monteiro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --container-bg: #ffffff;
+            --primary-color: #0a192f;
+            --secondary-color: #1e3a8a;
+            --accent-color: #3b82f6;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --card-hover: #f8fafc;
+            --badge-bg: #eff6ff;
+            --badge-text: #1e40af;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --container-bg: #1e293b;
+            --primary-color: #38bdf8;
+            --secondary-color: #7dd3fc;
+            --accent-color: #0ea5e9;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --card-hover: #1e293b;
+            --badge-bg: #0c4a6e;
+            --badge-text: #e0f2fe;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Top Controls */
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 20px;
+            background-color: var(--container-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-btn:hover {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0a192f 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            color: #93c5fd;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.95rem;
+        }
+
+        .contact-info a, .contact-info span {
+            color: #e2e8f0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a:hover {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        /* Layout Grid */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            padding: 30px;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .main-layout {
+                grid-template-columns: 3.5fr 6.5fr;
+            }
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Sidebar Styling */
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .skill-group h4 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Timeline / Main Content Styling */
+        .summary-text {
+            color: var(--text-main);
+            text-align: justify;
+            font-size: 0.98rem;
+        }
+
+        .card {
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background-color: var(--card-hover);
+            border-color: var(--accent-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .company {
+            font-size: 0.95rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .bullet-list {
+            margin-top: 12px;
+            padding-left: 20px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            display: none; /* Interactive Collapse */
+        }
+
+        .card.active .bullet-list {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .bullet-list li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .click-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .card.active .click-hint {
+            display: none;
+        }
+
+        /* Education Card */
+        .edu-item {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        .edu-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .edu-inst {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="controls">
+            <button class="theme-btn" id="themeToggle">
+                <i class="fas fa-moon"></i> <span>Modo Escuro</span>
+            </button>
+        </div>
+
+        <header>
+            <h1>Gabriel M. Monteiro</h1>
+            <div class="subtitle">Administrador | Especialista em Controladoria, Finanças e Crédito</div>
+            <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> Manaus, AM</span>
+                <a href="mailto:g1m2gabrielgestao@gmail.com"><i class="fas fa-envelope"></i> g1m2gabrielgestao@gmail.com</a>
+                <a href="https://www.linkedin.com/in/gabriel-m-monteiro-926037415" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            
+            <aside>
+                <section>
+                    <h2><i class="fas fa-cogs"></i> Competências</h2>
+                    <div class="skills-container">
+                        <div class="skill-group">
+                            <h4>Gestão & Finanças</h4>
+                            <div class="tags">
+                                <span class="tag">Controle Orçamentário</span>
+                                <span class="tag">Recuperação de Crédito</span>
+                                <span class="tag">Gestão de Inadimplência</span>
+                                <span class="tag">Conciliação Financeira</span>
+                                <span class="tag">Contas a Pagar/Receber</span>
+                                <span class="tag">Auditoria de Conformidade</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h4>Análise & Estratégia</h4>
+                            <div class="tags">
+                                <span class="tag">Ciência de Dados Corporativa</span>
+                                <span class="tag">Gestão de Projetos</span>
+                                <span class="tag">Mapeamento de KPIs</span>
+                                <span class="tag">Relatórios Gerenciais</span>
+                                <span class="tag">Estratégias de Marketing</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h4>Sistemas ERP</h4>
+                            <div class="tags">
+                                <span class="tag">Totvs</span>
+                                <span class="tag">Oracle</span>
+                                <span class="tag">Superlógica</span>
+                                <span class="tag">Brcondomínio</span>
+                                <span class="tag">Condomob</span>
+                                <span class="tag">Omie</span>
+                                <span class="tag">Excel Avançado</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2><i class="fas fa-graduation-cap"></i> Formação</h2>
+                    <div class="edu-item">
+                        <div class="edu-title">Pós-graduação em Ciência de Dados (Data Science)</div>
+                        <div class="edu-inst">Educaminas EAD | 2026 - 2027</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-title">MBA em Controladoria e Finanças</div>
+                        <div class="edu-inst">Faculdade Focus | 2025 - 2026</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-title">MBA em Gestão de Crédito e Cobrança</div>
+                        <div class="edu-inst">Instituto Faculeste | 2024 - 2025</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-title">Pós-graduação em Gestão de Projetos</div>
+                        <div class="edu-inst">Facuminas | 2023 - 2024</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-title">Bacharelado em Administração</div>
+                        <div class="edu-inst">UniNorte | 2017 - 2020</div>
+                    </div>
+                </section>
+            </aside>
+
+            <main>
+                <section>
+                    <h2><i class="fas fa-user"></i> Resumo Profissional</h2>
+                    <p class="summary-text">
+                        Administrador especializado em Controladoria, Finanças e Gestão de Crédito e Cobrança. Possui sólida experiência em gestão financeira, recuperação de crédito extrajudicial e auditoria de processos operativos. Especialista no mapeamento de KPIs, controle orçamentário e planejamento de estratégias para redução de inadimplência. Perfil analítico e orientado a dados, focado na otimização de rotinas administrativas, controle de faturamento e apoio direto a stakeholders. Alta proficiência na utilização de múltiplos sistemas ERP e plataformas de gestão para garantir a conformidade e a fluidez das rotinas operacionais.
+                    </p>
+                </section>
+
+                <section>
+                    <h2><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
+                    
+                    <div class="card active" onclick="toggleCard(this)">
+                        <div class="card-header">
+                            <div>
+                                <div class="job-title">Analista de Cobrança e Gestão Administrativa</div>
+                                <div class="company">Garcia e Oliveira Pinto Advogados</div>
+                            </div>
+                            <div class="date">Dez 2021 – Presente</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Lidera a estratégia de recuperação de crédito extrajudicial e cobrança de cotas condominiais, atuando com foco na redução da inadimplência e manutenção da saúde financeira dos condomínios.</li>
+                            <li>Gerencia os indicadores operacionais do setor, elaborando relatórios gerenciais e realizando o mapeamento detalhado do perfil de devedores, garantindo controle rigoroso dos valores negociados e efetivamente recuperados.</li>
+                            <li>Realiza consultoria e apoio administrativo direto a síndicos e administradoras. Utiliza sistemas integrados de gestão condominial (como Superlógica, Brcondomínio, Condomob, entre outros) para dar segurança e fluidez às rotinas.</li>
+                            <li>Executa suporte técnico avançado em rotinas administrativas, incluindo a elaboração de cálculos de atualização monetária de alta complexidade para as cobranças.</li>
+                        </ul>
+                        <div class="click-hint">Clique para expandir detalhes...</div>
+                    </div>
+
+                    <div class="card" onclick="toggleCard(this)">
+                        <div class="card-header">
+                            <div>
+                                <div class="job-title">Assistente Administrativo e Financeiro (Marketing)</div>
+                                <div class="company">brMalls</div>
+                            </div>
+                            <div class="date">Abr 2019 – Set 2019</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Respondeu pela gestão financeira do departamento de marketing, realizando o controle rigoroso do orçamento destinado a campanhas e ações promocionais.</li>
+                            <li>Assegurou o controle do fluxo de notas fiscais e pagamentos, garantindo o alinhamento total das rotinas administrativas com o setor financeiro.</li>
+                            <li>Conduziu o acompanhamento operacional e o suporte na execução de eventos no mall (shopping center), assegurando o cumprimento dos cronogramas e a qualidade das entregas.</li>
+                            <li>Suportou o desenvolvimento e implementação de estratégias de comunicação integrada, unindo iniciativas em canais digitais e campanhas físicas.</li>
+                        </ul>
+                        <div class="click-hint">Clique para expandir detalhes...</div>
+                    </div>
+
+                    <div class="card" onclick="toggleCard(this)">
+                        <div class="card-header">
+                            <div>
+                                <div class="job-title">Analista / Estagiário de Auditoria Interna</div>
+                                <div class="company">brMalls</div>
+                            </div>
+                            <div class="date">Fev 2017 – Jan 2019</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Conduziu auditorias in loco para verificação de conformidade operacional, garantindo o alinhamento rigoroso aos processos internos e padrões de qualidade corporativos.</li>
+                            <li>Realizou a análise e conciliação de relatórios de vendas, atuando no controle financeiro e comercial para identificar divergências, mitigar riscos e assegurar a integridade das informações.</li>
+                            <li>Desenvolveu e estruturou relatórios gerenciais complexos, integrando KPIs quantitativos e avaliações qualitativas de cenários e processos.</li>
+                            <li>Transformou dados operacionais em insights estratégicos, fornecendo suporte direto à gestão para a tomada de decisões assertivas e melhoria contínua de resultados.</li>
+                        </ul>
+                        <div class="click-hint">Clique para expandir detalhes...</div>
+                    </div>
+
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        const text = themeToggle.querySelector('span');
+
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                text.innerText = 'Modo Escuro';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                text.innerText = 'Modo Claro';
+            }
+        });
+
+        // Interactive Experience Cards
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
